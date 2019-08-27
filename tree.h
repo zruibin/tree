@@ -31,8 +31,20 @@
 #include <ctype.h>
 #include <unistd.h>
 #include <limits.h>
+
+/******** Efrey Kong: adapt for mingw-w64***********/
+#ifndef __MINGW32__  
 #include <pwd.h>
 #include <grp.h>
+#include <langinfo.h>
+#else
+#include "mingw-w64/include/stat.h"
+#include "mingw-w64/include/pwd.h"
+#include "mingw-w64/include/grp.h"
+#include "mingw-w64/include/langinfo.h"
+#include "mingw-w64/include/unistd.h"
+#endif
+/******** end of adapt for mingw-w64*/
 #ifdef __EMX__  /* for OS/2 systems */
 #  define INCL_DOSFILEMGR
 #  define INCL_DOSNLS
@@ -52,7 +64,6 @@
 #endif
 
 #include <locale.h>
-#include <langinfo.h>
 #include <wchar.h>
 #include <wctype.h>
 
