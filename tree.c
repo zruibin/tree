@@ -19,7 +19,8 @@
 
 #include "tree.h"
 
-static char *version ="$Version: $ tree v1.8.0 (c) 1996 - 2018 by Steve Baker, Thomas Moore, Francesc Rocher, Florian Sesser, Kyosuke Tokoro $";
+static char *version ="$Version: $ tree v1.8.0 (c) 1996 - 2018 by Steve Baker, Thomas Moore, Francesc Rocher, Florian Sesser, Kyosuke Tokoro \n"
+          "MINGW-W64 & GBK support added by Efrey Kong$";
 static char *hversion="\t\t tree v1.8.0 %s 1996 - 2018 by Steve Baker and Thomas Moore <br>\n"
 		      "\t\t HTML output hacked and copyleft %s 1998 by Francesc Rocher <br>\n"
 		      "\t\t JSON output hacked and copyleft %s 2014 by Florian Sesser <br>\n"
@@ -105,12 +106,33 @@ int main(int argc, char **argv)
   dirs[0] = 0;
   Level = -1;
 
-  setlocale(LC_CTYPE, "");
-  setlocale(LC_COLLATE, "");
+  /* Added by Efrey Kong
+  *  For POSTIX environment
+  */
+  setlocale(LC_CTYPE, "C");
+  char *strenv;
+  if ((strenv = getenv("LC_ALL")) || (strenv = getenv("LC_CTYPE")) || (strenv = getenv ("LANG")))    
+  {  
+    if (strstr(strenv, "UTF-8")) 
+      charset = "UTF-8"; 
+  }
 
-  charset = getcharset();
-  if (charset == NULL && strcmp(nl_langinfo(CODESET), "UTF-8") == 0) {
-    charset = "UTF-8";
+  /* Added by Efrey Kong
+  *  For GBK environment
+  */
+  if (charset == NULL && strcmp(nl_langinfo(CODESET), "CP936") == 0) {
+    charset = "GBK";
+  }
+
+  if( charset == NULL ) {
+    setlocale(LC_CTYPE, "");
+    setlocale(LC_COLLATE, "");
+
+    charset = getcharset();
+
+    if (charset == NULL && strcmp(nl_langinfo(CODESET), "UTF-8") == 0) {
+      charset = "UTF-8";
+    }
   }
 
 /* Until I get rid of this hack, make it linux/cygwin/HP nonstop only: */
