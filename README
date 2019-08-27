@@ -1,10 +1,10 @@
-修改说明：
+#修改说明：
 1、为项目增加了MINGW-W64 GCC编译的适配。原项目默认在Cygwin GCC环境下编译，缺点是编译后的可执行程序只能在有Cygwin的环境才能运行。
 2、为项目增加了GBK字符集支持。更好的展示Windows操作系统中文环境下的显示。
 
 
-以下是原README内容：
------------------------------------------------------------------------------
+#以下是原README内容：
+==================
   Please read the INSTALL file for installation instructions, particularly if
 you are installing on a non-Linux machine.
 
