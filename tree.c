@@ -125,6 +125,7 @@ int main(int argc, char **argv)
   }
 
   if( charset == NULL ) {
+    force_color = TRUE; /*结果增加颜色显示*/
     setlocale(LC_CTYPE, "");
     setlocale(LC_COLLATE, "");
 

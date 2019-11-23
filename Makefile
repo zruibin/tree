@@ -61,12 +61,12 @@ CFLAGS=-ggdb -pedantic -Wall -DLINUX -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=6
 
 # Uncomment for OS X:
 # It is not allowed to install to /usr/bin on OS X any longer (SIP):
-#prefix = /usr/local
-#CC=cc
-#CFLAGS=-O2 -Wall -fomit-frame-pointer -no-cpp-precomp
-#LDFLAGS=
-#MANDIR=/usr/share/man/man1
-#OBJS+=strverscmp.o
+prefix = /usr/local
+CC=cc
+CFLAGS=-O2 -Wall -fomit-frame-pointer -no-cpp-precomp
+LDFLAGS=
+MANDIR=/usr/share/man/man1
+OBJS+=strverscmp.o
 
 # Uncomment for HP/UX:
 #CC=cc

@@ -166,3 +166,36 @@ tree v1.8.0 (c) 1996 - 2018 by Steve Baker, Thomas Moore, Francesc Rocher, Flori
 MINGW-W64 & GBK support added by Efrey Kong
 ```
 
+
+###Mac 编译
+
+取消注释，在 makefile ，第55 - 60行，原本是
+
+	# Uncomment for OS X:
+	# CC=cc
+	# CFLAGS=-O2 -Wall -fomit-frame-pointer -no-cpp-precomp
+	# LDFLAGS=
+	# MANDIR=/usr/share/man/man1
+	# OBJS+=strverscmp.o
+
+把 56 - 60 行取消注释，得到
+
+	# Uncomment for OS X:
+	CC=cc
+	CFLAGS=-O2 -Wall -fomit-frame-pointer -no-cpp-precomp
+	LDFLAGS=
+	MANDIR=/usr/share/man/man1
+	OBJS+=strverscmp.o
+
+
+###下面是可选动作，即给 tree 命令的现实结果增加颜色显示。
+
+进入 tree.c 文件，找到以下这一行代码。
+
+ 	setlocale(LC_CTYPE, "");
+
+在 setlocale(LC_CTYPE, ""); 这行代码的前面加上
+
+	force_color=TRUE;
+
+保存并退出。
